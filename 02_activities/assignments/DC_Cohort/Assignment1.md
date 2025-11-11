@@ -14,10 +14,10 @@
     * Open a private window in your browser. Copy and paste the link to your pull request into the address bar. Make sure you can see your pull request properly. This helps the technical facilitator and learning support staff review your submission easily.
 
 Checklist:
-- [ ] Create a branch called `assignment-one`.
-- [ ] Ensure that the repository is public.
-- [ ] Review [the PR description guidelines](https://github.com/UofT-DSI/onboarding/blob/main/onboarding_documents/submissions.md#guidelines-for-pull-request-descriptions) and adhere to them.
-- [ ] Verify that the link is accessible in a private browser window.
+- [x] Create a branch called `assignment-one`.
+- [x] Ensure that the repository is public.
+- [x] Review [the PR description guidelines](https://github.com/UofT-DSI/onboarding/blob/main/onboarding_documents/submissions.md#guidelines-for-pull-request-descriptions) and adhere to them.
+- [x] Verify that the link is accessible in a private browser window.
 
 If you encounter any difficulties or have questions, please don't hesitate to reach out to our team via our Slack. Our Technical Facilitators and Learning Support staff are here to help you navigate any challenges.
 
@@ -34,8 +34,8 @@ Steps to complete this part of the assignment:
 If this is your first time in DB Browser for SQLite, the following instructions may help:
 
 #### 1) Load Database
-- Open DB Browser for SQLite
-- Go to File > Open Database
+- Open DB Browser for SQLite`
+- Go to File > Open Database`
 - Navigate to your farmersmarket.db 
 	- This will be wherever you cloned the GH Repo (within the **05_src/sql** folder)
 	- ![db_browser_for_sqlite_choose_db.png](./images/01_db_browser_for_sqlite_choose_db.png)
@@ -105,6 +105,8 @@ Please do not pick the exact same tables that I have already diagrammed. For exa
 	- These are the tables that are connected
 	- <img src="./images/01_farmers_market_conceptual_model.png" width="600">
 - The column names can be found in a few spots (DB Schema window in the bottom right, the Database Structure tab in the main window by expanding each table entry, at the top of the Browse Data tab in the main window)
+
+ <img src="./images/02_assignment_1_logical_model.png" width="500">
 
 ***
 
@@ -203,7 +205,16 @@ Link if you encounter a paywall: https://web.archive.org/web/20240422105834/http
 
 Consider, for example, concepts of fariness, inequality, social structures, marginalization, intersection of technology and society, etc.
 
-
 ```
-Your thoughts...
+
+The number of times I've heard some equivalent of "… the computer doesn't allow it" is probably in the thousands over the course of 35 years. In particular, I can think of a few databases we encounter in day-to-day life that contain embedded value systems (though perhaps not as severe as what constitutes a "legitimate" family structure). 
+
+Credit scoring systems/databases – which I assume, on the back-end, function similarly to the NADRA status system – are the primary determinants of whether individuals can rent an apartment, obtain a loan, or qualify for a mortgage (embodying the societal narrative that traditional employment equals financial stability). I would assume a steady job with regular paychecks fits into the database's schema, but disadvantages freelancers, gig workers, people with seasonal employment (e.g., arborists), or many sole proprietors. The system likely flags individuals with less traditional employment as risky (I experienced this running a small business for ~8 years before returning to academia) before a human comes into the loop, paralleling NADRA's requirement that Pakistani citizens must connect to a verified family tree. Relevant intangibles (such as paying bills on time) outside the schema are not considered or weighed as heavily as part of the financial calculus.
+
+A second system I have encountered more frequently (though it is of far less consequence) is online shopping services, which I believe have pre-determined schemas connected to Google Maps. I live in a Townhouse (address starts with "TH1-street address"), so when I try to register for any delivery service or choose an alternative pickup location, I am unable to complete the process. The dropdown menu for addresses often doesn't recognize "TH1" as a valid prefix – it expects standard street numbers (have to conform to its expected address format and add a delivery note).
+
+Although I do not have personal experience with them, I have read about AI-powered HR recruitment systems that contain similar assumptions (this might be a leap from databases to AI, but I digress). For example, these systems increasingly use automated filters to screen job applications, trained on patterns from successful past hires. In particular, these algorithms flag gaps in employment history when those gaps might reflect caregiving/childcare, health issues, or other circumstances beyond the applicant's control. They prioritize candidates whose experience aligns with a linear progression within traditional industries, effectively filtering out career changers, returning parents, or individuals (like me) who have taken less conventional employment trajectories. If your professional life doesn't fit that template, you are removed from consideration before a human ever sees your application.
+
+Ultimately, the article is quite thought-provoking. Clearly, database design choices can carry significant real-world consequences.
+
 ```
