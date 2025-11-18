@@ -1,102 +1,194 @@
-<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="/Users/thomas/Documents/GitHub/02-intro_sql/05_src/sql/farmersmarket.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="12168"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="booth" custom_title="0" dock_id="2" table="4,5:mainbooth"/><dock_state state="000000ff00000000fd000000010000000200000536000003a5fc0100000002fb000000160064006f0063006b00420072006f00770073006500310100000000ffffffff0000000000000000fb000000160064006f0063006b00420072006f00770073006500320100000000000005360000019b00ffffff000005360000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="booth" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="136"/><column index="2" value="164"/><column index="3" value="300"/><column index="4" value="108"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 2">/* MODULE 2 */
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="/Users/mcowan38/Documents/GitHub/DSI/sql/05_src/sql/farmersmarket.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="7306"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="customer_purchases" custom_title="0" dock_id="2" table="4,18:maincustomer_purchases"/><dock_state state="000000ff00000000fd0000000100000002000007ca000004b4fc0100000002fb000000160064006f0063006b00420072006f00770073006500310100000000ffffffff0000000000000000fb000000160064006f0063006b00420072006f00770073006500320100000000000007ca0000012000ffffff000007ca0000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="booth" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="104"/><column index="2" value="125"/><column index="3" value="300"/><column index="4" value="83"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="customer" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="89"/><column index="2" value="147"/><column index="3" value="145"/><column index="4" value="158"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="customer_purchases" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="80"/><column index="2" value="73"/><column index="3" value="91"/><column index="4" value="91"/><column index="5" value="62"/><column index="6" value="184"/><column index="7" value="119"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="product" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="80"/><column index="2" value="206"/><column index="3" value="93"/><column index="4" value="145"/><column index="5" value="124"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 2">/* MODULE 2 */
 /* SELECT */
 
-
 /* 1. Select everything in the customer table */
-SELECT 
+SELECT  *
+FROM customer;
+
 
 /* 2. Use sql as a calculator */
-
+SELECT 1+1 as math_1, 10*5 as math_2, pi() as pi;
 
 
 /* 3. Add order by and limit clauses */
+SELECT*
+FROM customer
+ORDER BY customer_first_name
+LIMIT 10;
 
 
+/* 4. Select multiple specific columns */
+SELECT customer_id, customer_first_name
+FROM customer;
 
-/* 4. Select multiple specific columns * /
 
-
-
-/* 5. Add a static value in a column */</sql><sql name="SQL 7">/* MODULE 2 */
+/* 5. Add a static value in a column
+ 2025 &amp; October will be repeated for every row (passing a value to the column to be 'static')
+ Can create columns and fill them with values
+This is filling in values (2025, October) */
+SELECT 2025 as this_year, 'October' as this_month, customer_id
+FROM customer;</sql><sql name="SQL 7">/* MODULE 2 */
 /* WHERE */
 
-/* 1. Select only customer 1 from the customer table */
+/* 1. Select only customer 1 (customer_id) from the customer table */
 SELECT * 
 FROM customer
-WHERE 
+WHERE customer_id = 1;
 
 
 /* 2. Differentiate between AND and OR */
+SELECT *
+FROM customer
+WHERE customer_id = 1
+AND customer_id = 2;
+-- this returns nothing; no rows where id is both 1 and 2
 
+
+/* Use OR instead */
+SELECT *
+FROM customer
+WHERE customer_id = 1
+OR customer_id = 2;
 
 
 /* 3. IN */
-
+SELECT *
+FROM customer
+WHERE customer_id IN (3,4,5)
+OR customer_postal_code IN ('M4M','M1L');
+ -- customers in these postal codes
 
 
 /* 4. LIKE */
+SELECT * FROM product WHERE product_name LIKE '%pepper%';
 
 
+-- customer with a last name starting with &quot;a&quot; (note wildcard placement matters, % before or after the &quot;a&quot;)
+SELECT * FROM customer
+WHERE customer_last_name LIKE 'a%';
 
-/* 5. Nulls and Blanks* /
+/* 5. Nulls (missing values) vs. Blanks (empty string)*/
+SELECT * FROM product
+WHERE product_size IS NULL
+OR product_size = '';
 
 
+/* 6. BETWEEN x AND y (precedes selection, including the queried + between) */
+SELECT *
+FROM customer
+WHERE customer_id BETWEEN 1 AND 20;
 
-/* 6. BETWEEN x AND y */</sql><sql name="SQL 10">/* MODULE 2 */
-/* CASE */
+-- dates (between)
+SELELECT market_date
+FROM market_date_info
+WHERE market_date BETWEEN '2022-10-01' AND '2022-10-31'
+</sql><sql name="SQL 10">/* MODULE 2 */
+/* CASE (similar to if or if else statements in Python)
+if true, move onto next condition; result is a new column (that should be named with AS)*/
 
+/* CASE
+		WHEN [something is true]
+			THEN [value or calculation]
+		WHEN [something else is true]
+			THEN [value or calculation]
+		ELSE [value or calculation]
+	END */
 
 SELECT * 
-/* 1. Add a CASE statement declaring which days vendors should come */
-
+/* 1. Add a CASE statement declaring which days vendors should come 
+Starting with a comma makes format look better (will throw an error) */
+,CASE WHEN vendor_type = 'Fresh Focused' THEN 'Wednesday'
+	WHEN vendor_type = 'Prepared Foods' THEN 'Thursday'
+	ELSE 'Saturday'
+END as day_of_speciality
+-- add a column that will say Wednesday or Thursday (depending), or all else Saturday
 
 /* 2. Add another CASE statement for Pie Day */
-
+,CASE WHEN vendor_name = &quot;Annie's pies&quot; -- double quotes work here (necessary because of the ')
+	THEN 'Annie is great'
+END as pie_day -- here it will autofill null (everywhere except for Annie's)
 
 
 /* 3. Add another CASE statement with an ELSE clause to handle rows evaluating to False */
-
+,CASE WHEN vendor_name LIKE '%pie%'
+	THEN 'Wednesday'
+	ELSE 'Friday'
+END as also_pie_day;
 
 
 /* 4. Experiment with selecting a different column instead of just a string value */
+SELECT *
+,CASE WHEN cost_to_customer_per_qty &lt; '1,00' -- decimal values need to be in strings (henge the quotes)
+	THEN cost_to_customer_per_qty*5 -- if cost_to_customer_per_qty is less than $1, multiple it by 5
+	ELSE cost_to_customer_per_qty -- otherwise show the cost to customer
+END AS inflation
 
-
-FROM vendor</sql><sql name="SQL 9">/* MODULE 2 */
-/* DISTINCT */
+FROM customer_purchases</sql><sql name="SQL 9">/* MODULE 2 */
+/* DISTINCT: has 2 spots for SQL
+1. Immediately after SELECT before column names are specified (governs entire query);
+2. Within aggregation (will only affect the specific aggregation)*/
 
 
 /* 1. Compare how many customer_ids are the customer_purchases table, one select with distinct, one without */
 
--- 4221 rows
-SELECT customer_id FROM customer_purchases 
+-- 4221 rows (despite only being 26 customers; retrieving every purchase so there are duplicates)
+SELECT customer_id FROM customer_purchases;
 
+-- just the labels
+SELECT DISTINCT customer_id FROM customer_purchases;
 
 
 /* 2. Compare the difference between selecting market_day in market_date_info, with and without distinct:
  what do these difference mean?*/
+SELECT market_day
+FROM market_date_info; -- this selects days the market is open (even though open Saturday &amp; Wednesday)
 
+-- the market is only open on 2 days
+SELECT DISTINCT market_day
+FROM market_date_info;
  
 
 /* 3. Which vendor has sold products to a customer */
+-- 3 vendors have sold products (below produces 3 rows)
+SELECT DISTINCT vendor_id
+FROM customer_purchases;
 
 
-
-/* 4. Which vendor has sold products to a customer ... and which product was it * /
-
+/* 4. Which vendor has sold products to a customer ... and which product was it */
+SELECT DISTINCT vendor_id, product_id
+FROM customer_purchases;
 
 
 /* 5. Which vendor has sold products to a customer 
 ... and which product was it? 
 ... AND to whom was it sold*/
-
+SELECT DISTINCT vendor_id, product_id, customer_id
+FROM customer_purchases; -- every time someone bought a product, we're adding the customers
 </sql><sql name="SQL 8">/* MODULE 2 */
-/* INNER JOIN */
+/* 3 Types of JOIN:
+SELECT [columns]
+FROM [left table]
+JOIN [right table]
+ON [left table.matching column] = [right table.matching column] */
+-- matching columns need same value
+-- can specify more than one column to be joined (with AND)
 
+/* INNER JOIN (the default) */
+-- Does not produce NULL values
 
 /* 1. Get product names (from product table) alongside customer_purchases 
  ... use an INNER JOIN to see only products that have been purchased */
- 
--- without table aliases
+ -- without table aliases
+
+ SELECT product_name, -- coming from the product TABLE
+vendor_id, -- rest are coming from customer purchases
+market_date,
+customer_id,
+customer_purchases.product_id 
+
+FROM product
+INNER JOIN customer_purchases -- everything on the right
+		ON customer_purchases.product_id = product.product_id;
 
 
 
@@ -106,26 +198,68 @@ SELECT customer_id FROM customer_purchases
 
     Add customers' first and last names with an INNER JOIN  */
 
--- using table aliases
+-- using table aliases (note the order of execution; c. is above before it gets defined)
+
+SELECT product_name, -- coming from the product TABLE
+vendor_id, -- rest are coming from customer purchases
+market_date,
+c. customer_id,
+customer_first_name, -- coming from customer
+customer_last_name -- coming from customer
+
+-- aliases tell SQL that &quot;cp&quot; means customer_purchases
+FROM customer_purchases as cp
+INNER JOIN customer as c
+	ON c.customer_id = cp.customer_id
+	
+
+	
 
 
 </sql><sql name="SQL 11">/* MODULE 2 */
 /* LEFT  JOIN */
+-- Filter the right table to rows present in the left table
+-- Will null out values on the right table that aren't present in left
 
 
 /* 1. There are products that have been bought
 ... but are there products that have not been bought? 
 Use a LEFT JOIN to find out*/
+-- only products that have been sold because there are no product ids in CP that AREN'T in product
+SELECT DISTINCT
+p.product_id
+,cp.product_id as [cp.product_id]
+,product_name
 
+FROM product as p
+LEFT JOIN customer_purchases as cp
+	ON p.product_id = cp.product_id;
+
+-- NULL value in cp.product_id because 6 was not sold; LEFT  JOIN shows this item was not purchased because it's not in the TABLE
 
 /* 2. Directions of LEFT JOINs matter ...*/
+SELECT DISTINCT
+p.product_id
+,cp.product_id as [cp.product_id]
+,product_name
 
-
-
+FROM customer_purchases as cp
+LEFT JOIN product as p
+	ON p.product_id = cp.product_id;
 
 /* 3. As do which values you filter on ... */
+SELECT DISTINCT
+p.product_id
+,cp.product_id as [cp.product_id]
+,product_name
 
-
+FROM product as p
+LEFT JOIN customer_purchases as cp
+	ON p.product_id = cp.product_id
+	
+WHERE cp.product_id BETWEEN 1 AND 6
+-- filtering customer purchases 1 and 6, we get only 5 rows (where's the 6th?)
+-- id 6 has not been sold
 
 
 /* 4. Without using a RIGHT JOIN, make this query return the RIGHT JOIN result set
@@ -141,20 +275,224 @@ LEFT JOIN product AS p
 ...Note how the row count changed from 24 to 23
 */	
 
-</sql><sql name="SQL 12">/* MODULE 2 */
+SELECT *
+
+FROM product_category AS pc
+RIGHT JOIN product AS p
+	ON pc.product_category_id = p.product_category_id
+	ORDER by pc.product_category_id</sql><sql name="SQL 12">/* MODULE 2 */
 /* Multiple Table JOINs */
 
-
+/* SELECT *
+FROM table_1
+{INNER | LEFT | FULL JOIN} table_2
+	ON table_1.key = table_2.key
+{INNER | LEFT | FULL JOIN} table_3
+	ON {table_1 = table_2}.key = table_3.key
+{INNER | LEFT | FULL JOIN} table_n
+	ON {table_1 | table_2 | table_3}.key = table_n.key
+	
+Order &amp; types of join matter for the outcome on the final table (most importantly the FROM table) */
+	
 /* 1. Using the Query #4 from DISTINCT earlier 
     (Which vendor has sold products to a customer AND which product was it AND to whom was it sold)
 
     Replace all the IDs (customer, vendor, and product) with the names instead*/ 
+SELECT DISTINCT 
+--v.vendor_id
+vendor_name
+-- ,product_id
+,product_name
+-- customer_id -- first/last name
+,customer_first_name
+,customer_last_name
 
+FROM customer_purchases as cp
+INNER JOIN customer as c
+		ON c.customer_id = cp.customer_id
+INNER JOIN vendor as v
+		ON v.vendor_id = cp.vendor_id
+INNER JOIN product as p
+		ON p.product_id = cp.product_id;
 
 
 /* 2. Select product_category_name, everything from the product table, and then LEFT JOIN the customer_purchases table
-... how does this LEFT JOIN affect the number of rows? 
+... how does this LEFT JOIN affect the number of rows?  -- introducing different join type will result in different amount of rows
 
 Why do we have more rows now?*/
 
-</sql><current_tab id="6"/></tab_sql></sqlb_project>
+SELECT product_category_name, p.*, cp.product_id as product_id_in_purchases_table 
+
+FROM product_category as pc
+INNER JOIN product as p
+		ON p.product_category_id = pc.product_category_id
+LEFT JOIN customer_purchases as cp
+		ON cp.product_id = p.product_id
+
+-- bringing in the LEFT JOIN introduces far more rows (and eventually brings in the ones that were dropped)
+
+SELECT product_category_name, p.*, cp.product_id as product_id_in_purchases_table 
+
+FROM product_category as pc
+INNER JOIN product as p
+		ON p.product_category_id = pc.product_category_id
+LEFT JOIN customer_purchases as cp
+		ON cp.product_id = p.product_id
+
+ORDER BY cp.product_id</sql><sql name="SQL 35*">/* ASSIGNMENT 1 */
+/* SECTION 2 */
+
+
+--SELECT
+/* 1. Write a query that returns everything in the customer table. */
+SELECT *
+FROM customer;
+
+
+/* 2. Write a query that displays all of the columns and 10 rows from the cus- tomer table, 
+sorted by customer_last_name, then customer_first_ name. */
+SELECT *
+FROM customer
+ORDER BY customer_last_name, customer_first_name
+LIMIT 10;
+
+
+--WHERE
+/* 1. Write a query that returns all customer purchases of product IDs 4 and 9. */
+SELECT *
+FROM customer_purchases
+WHERE product_id IN (4, 9);
+
+/*2. Write a query that returns all customer purchases and a new calculated column 'price' (quantity * cost_to_customer_per_qty), 
+filtered by customer IDs between 8 and 10 (inclusive) using either:
+	1.  two conditions using AND
+	2.  one condition using BETWEEN
+*/
+-- option 1
+SELECT *
+,quantity * cost_to_customer_per_qty AS price
+FROM customer_purchases
+WHERE customer_id &gt;= 8
+AND customer_id &lt;= 10;
+
+-- option 2
+SELECT *
+,quantity * cost_to_customer_per_qty AS price
+FROM customer_purchases
+WHERE customer_id BETWEEN 8 AND 10;
+
+
+--CASE
+/* 1. Products can be sold by the individual unit or by bulk measures like lbs. or oz. 
+Using the product table, write a query that outputs the product_id and product_name
+columns and add a column called prod_qty_type_condensed that displays the word “unit” 
+if the product_qty_type is “unit,” and otherwise displays the word “bulk.” */
+SELECT product_id
+,product_name
+,CASE
+	WHEN product_qty_type = 'unit' THEN 'unit'
+    ELSE 'bulk'
+END AS prod_qty_type_condensed
+FROM product;
+
+
+/* 2. We want to flag all of the different types of pepper products that are sold at the market. 
+add a column to the previous query called pepper_flag that outputs a 1 if the product_name 
+contains the word “pepper” (regardless of capitalization), and otherwise outputs 0. */
+SELECT product_id
+,product_name
+,CASE
+    WHEN product_qty_type = 'unit' THEN 'unit'
+    ELSE 'bulk'
+END AS prod_qty_type_condensed
+,CASE
+    WHEN LOWER(product_name) LIKE '%pepper%' THEN 1
+    ELSE 0
+END AS pepper_flag
+FROM product;
+
+
+--JOIN
+/* 1. Write a query that INNER JOINs the vendor table to the vendor_booth_assignments table on the 
+vendor_id field they both have in common, and sorts the result by vendor_name, then market_date. */
+SELECT *
+FROM vendor AS v
+INNER JOIN vendor_booth_assignments AS vba
+    ON v.vendor_id = vba.vendor_id
+ORDER BY vendor_name, market_date;
+
+
+/* SECTION 3 */
+
+-- AGGREGATE
+/* 1. Write a query that determines how many times each vendor has rented a booth 
+at the farmer’s market by counting the vendor booth assignments per vendor_id. */
+SELECT vendor_id
+,COUNT(*) AS booth_count
+FROM vendor_booth_assignments
+GROUP BY vendor_id;
+
+
+
+/* 2. The Farmer’s Market Customer Appreciation Committee wants to give a bumper 
+sticker to everyone who has ever spent more than $2000 at the market. Write a query that generates a list 
+of customers for them to give stickers to, sorted by last name, then first name. 
+
+HINT: This query requires you to join two tables, use an aggregate function, and use the HAVING keyword. */
+SELECT c.customer_id
+,customer_first_name
+,customer_last_name
+,SUM(quantity * cost_to_customer_per_qty) AS total_spent
+FROM customer AS c
+INNER JOIN customer_purchases AS cp
+    ON c.customer_id = cp.customer_id
+GROUP BY c.customer_id, customer_first_name, customer_last_name
+HAVING SUM(quantity * cost_to_customer_per_qty) &gt; 2000
+ORDER BY customer_last_name, customer_first_name;
+
+
+--Temp Table
+/* 1. Insert the original vendor table into a temp.new_vendor and then add a 10th vendor: 
+Thomass Superfood Store, a Fresh Focused store, owned by Thomas Rosenthal
+
+HINT: This is two total queries -- first create the table from the original, then insert the new 10th vendor. 
+When inserting the new vendor, you need to appropriately align the columns to be inserted 
+(there are five columns to be inserted, I've given you the details, but not the syntax) 
+
+-&gt; To insert the new row use VALUES, specifying the value you want for each column:
+VALUES(col1,col2,col3,col4,col5) 
+*/
+DROP TABLE IF EXISTS temp.new_vendor;
+
+CREATE TABLE temp.new_vendor AS
+SELECT *
+FROM vendor;
+
+INSERT INTO temp.new_vendor
+VALUES (10, 'Thomass Superfood Store', 'Fresh Focused', 'Thomas', 'Rosenthal');
+
+
+-- Date
+/*1. Get the customer_id, month, and year (in separate columns) of every purchase in the customer_purchases table.
+
+HINT: you might need to search for strfrtime modifers sqlite on the web to know what the modifers for month 
+and year are! */
+SELECT customer_id
+,STRFTIME('%m', market_date) AS month
+,STRFTIME('%Y', market_date) AS year
+FROM customer_purchases;
+
+
+
+/* 2. Using the previous query as a base, determine how much money each customer spent in April 2022. 
+Remember that money spent is quantity*cost_to_customer_per_qty. 
+
+HINTS: you will need to AGGREGATE, GROUP BY, and filter...
+but remember, STRFTIME returns a STRING for your WHERE statement!! */
+SELECT customer_id
+    ,SUM(quantity * cost_to_customer_per_qty) AS total_spent
+FROM customer_purchases
+WHERE STRFTIME('%m', market_date) = '04'
+  AND STRFTIME('%Y', market_date) = '2022'
+GROUP BY customer_id;
+</sql><current_tab id="7"/></tab_sql></sqlb_project>
