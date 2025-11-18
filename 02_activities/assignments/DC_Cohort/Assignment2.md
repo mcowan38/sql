@@ -14,10 +14,10 @@
     * Open a private window in your browser. Copy and paste the link to your pull request into the address bar. Make sure you can see your pull request properly. This helps the technical facilitator and learning support staff review your submission easily.
 
 Checklist:
-- [ ] Create a branch called `assignment-two`.
-- [ ] Ensure that the repository is public.
-- [ ] Review [the PR description guidelines](https://github.com/UofT-DSI/onboarding/blob/main/onboarding_documents/submissions.md#guidelines-for-pull-request-descriptions) and adhere to them.
-- [ ] Verify that the link is accessible in a private browser window.
+- [x] Create a branch called `assignment-two`.
+- [x] Ensure that the repository is public.
+- [x] Review [the PR description guidelines](https://github.com/UofT-DSI/onboarding/blob/main/onboarding_documents/submissions.md#guidelines-for-pull-request-descriptions) and adhere to them.
+- [x] Verify that the link is accessible in a private browser window.
 
 If you encounter any difficulties or have questions, please don't hesitate to reach out to our team via our Slack. Our Technical Facilitators and Learning Support staff are here to help you navigate any challenges.
 
@@ -45,8 +45,12 @@ There are several tools online you can use, I'd recommend [Draw.io](https://www.
 
 **HINT:** You do not need to create any data for this prompt. This is a conceptual model only. 
 
+ <img src="../DC_Cohort/images/03_assignment_2_logical_model_prompt_1.png" width="500">
+ 
 #### Prompt 2
 We want to create employee shifts, splitting up the day into morning and evening. Add this to the ERD.
+
+<img src="../DC_Cohort/images/03_assignment_2_logical_model_prompt_2.png" width="500">
 
 #### Prompt 3
 The store wants to keep customer addresses. Propose two architectures for the CUSTOMER_ADDRESS table, one that will retain changes, and another that will overwrite. Which is type 1, which is type 2? 
@@ -54,7 +58,11 @@ The store wants to keep customer addresses. Propose two architectures for the CU
 **HINT:** search type 1 vs type 2 slowly changing dimensions. 
 
 ```
-Your answer...
+To track customer addresses, the store can use Type 1 or Type 2 slowly changing dimensions(https://www.datacamp.com/tutorial/mastering-slowly-changing-dimensions-scd).
+
+Using Type 1 slowly changing dimension, the customer table would have one row per customer, with relevant location fields (e.g., customer_id, street_address, city, state, postal_code, country) and some sort of time-stamped field. If the customer moves to a new address, the architecture will update the existing row with the new address information overwriting the previous address data (e.g., when the company finds out a customer is moving to 123 Charles St., the prior address would be overwritten on the table). This way, one address is kept per customer.
+
+Using Type 2 slowly changing dimension, the customer table would keep historical data by adding a new row when an address changes (instead of overwriting). In this case, all the previous addresses would be preserved, with an indicator noting which address is the current. In addition to the required location fields, Type 2 should have additional columns to track "is_current" (boolean in this example from datacamp) and start_date/end_date (showing the time period when this address was active).
 ```
 
 ***
@@ -183,5 +191,15 @@ Consider, for example, concepts of labour, bias, LLM proliferation, moderating c
 
 
 ```
-Your thoughts...
+Boykis’s argues that human capital underlies all intelligent machine learning (e.g. neural networks) and that these systems are effectively “people all the way down”— that is, they all rest on a foundation of human decision-making/capital/data aggregation. As a result, we should consider biases that might be encoded in the data, and who will derive benefits from the system.
+
+One concern Boykis touches on is invisible labour. Contemporary models (e.g., ImageNet-scale classifiers) rely on millions of hand-labelled examples, produced by students, crowd workers on Mechanical Turk, and earlier generations of annotators and corpus builders. Their work is repetitive, can be unpaid/underpaid, and completed largely without recognition (this last point resonates, given a prior Twitter annotation project I participated in). Benefits from these projects are accrued by researchers and companies at the top of the infrastructure hierarchy. They could even be used against those who trained the data (e.g., in the case of CNNs, facial recognition software). The more invisible the workers, the easier it is to undercompensate them and rather treat the result of their labour as if it were an achievement of computational expertise rather than collective human effort.
+
+Historical and social biases can also be embedded in training data. Similar to how much of academic research in the social sciences relies on participants from Western, Educated, Rich, Industrialized, and Democratic (WEIRD) populations, contemporary image and language models are largely trained on English corpora, which carry inherent assumptions/norms regarding gender, race, and social roles. These biases travel from the labelled training data through the labels to outputs that can reproduce stereotyping and insults, as inappropriate classification, and can be problematic when deployed in contexts with real-world consequences (e.g., policing, hiring, content moderation).
+
+Furthermore, in many labelling pipelines, the “correct” answer is whatever a majority of researchers, participants, or annotators agree upon under time constraints. Majority judgments can erase minority experiences and discredit alternative views; when majority votes become ground truth for downstream models, outliers are systematically misclassified or treated as noise rather than as meaningful disagreement.
+
+Boykis also raises questions of power and accountability in the context of the rapid proliferation of AI. The labour and data that sustain neural nets are distributed across time, institutions, and low-status workers, but control over the resulting systems is highly concentrated in a few firms and research labs. Models are often framed as “objective” or “self-learning”, yet when issues arise, blame is shifted onto “the algorithm” when outputs are biased or harmful—despite the human decisions embedded at every layer. As large language models become integrated into all aspects of human life, the stakes of these design choices. 
+Ultimately, machine learning/AI should be treated as systems built on human labour and historically situated data. Questions about fairness, bias, and responsibility, therefore, have to be traced all the way down the stack, not only asked at the moment a model is deployed.
+
 ```
